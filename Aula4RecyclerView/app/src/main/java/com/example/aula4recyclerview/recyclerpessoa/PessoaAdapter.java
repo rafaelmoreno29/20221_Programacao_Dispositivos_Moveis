@@ -31,6 +31,17 @@ public class PessoaAdapter extends RecyclerView.Adapter<PessoaHolder> {
     public void onBindViewHolder(@NonNull PessoaHolder holder, int position) {
         holder.nome.setText(pessoas.get(position).getNome());
         holder.telefone.setText(pessoas.get(position).getTelefone());
+        holder.buttonExcluir.setOnClickListener(
+                                            view -> excluirItem(position));
+    }
+    public void addItem(Pessoa pessoa){
+        PessoaDataset.addPessoa(pessoa);
+        notifyItemInserted(getItemCount());
+    }
+    private void excluirItem(int position){
+        pessoas.remove(position);
+        notifyItemRemoved(position);
+        notifyItemRangeChanged(position, pessoas.size());
     }
 
     @Override

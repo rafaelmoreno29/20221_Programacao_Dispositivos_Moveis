@@ -12,33 +12,6 @@ public class PessoaDataset {
         pessoas.add(new Pessoa(1,"Rafael Moreno","222222"));
         pessoas.add(new Pessoa(2,"José da Silva","3333333"));
         pessoas.add(new Pessoa(3,"Patrícia Soares","4444444"));
-        pessoas.add(new Pessoa(1,"Rafael Moreno","222222"));
-        pessoas.add(new Pessoa(2,"José da Silva","3333333"));
-        pessoas.add(new Pessoa(3,"Patrícia Soares","4444444"));
-        pessoas.add(new Pessoa(1,"Rafael Moreno","222222"));
-        pessoas.add(new Pessoa(2,"José da Silva","3333333"));
-        pessoas.add(new Pessoa(3,"Patrícia Soares","4444444"));
-        pessoas.add(new Pessoa(1,"Rafael Moreno","222222"));
-        pessoas.add(new Pessoa(2,"José da Silva","3333333"));
-        pessoas.add(new Pessoa(3,"Patrícia Soares","4444444"));
-        pessoas.add(new Pessoa(1,"Rafael Moreno","222222"));
-        pessoas.add(new Pessoa(2,"José da Silva","3333333"));
-        pessoas.add(new Pessoa(3,"Patrícia Soares","4444444"));
-        pessoas.add(new Pessoa(1,"Rafael Moreno","222222"));
-        pessoas.add(new Pessoa(2,"José da Silva","3333333"));
-        pessoas.add(new Pessoa(3,"Patrícia Soares","4444444"));
-        pessoas.add(new Pessoa(1,"Rafael Moreno","222222"));
-        pessoas.add(new Pessoa(2,"José da Silva","3333333"));
-        pessoas.add(new Pessoa(3,"Patrícia Soares","4444444"));
-        pessoas.add(new Pessoa(1,"Rafael Moreno","222222"));
-        pessoas.add(new Pessoa(2,"José da Silva","3333333"));
-        pessoas.add(new Pessoa(3,"Patrícia Soares","4444444"));
-        pessoas.add(new Pessoa(1,"Rafael Moreno","222222"));
-        pessoas.add(new Pessoa(2,"José da Silva","3333333"));
-        pessoas.add(new Pessoa(3,"Patrícia Soares","4444444"));
-        pessoas.add(new Pessoa(1,"Rafael Moreno","222222"));
-        pessoas.add(new Pessoa(2,"José da Silva","3333333"));
-        pessoas.add(new Pessoa(3,"Patrícia Soares","4444444"));
 
         return pessoas;
     }
