@@ -5,7 +5,9 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
 import com.example.exemploapi.adapters.UsuarioAdapter;
 import com.example.exemploapi.models.Usuario;
@@ -24,11 +26,19 @@ public class MainActivity extends AppCompatActivity {
         recyclerUsuario = (RecyclerView)findViewById(R.id.recyclerUsuario);
         listaUsuarios = new ArrayList<>();
     }
+    public void addUsuarioClick(View view){
+        Intent i = new Intent(MainActivity.this, CadUsuario.class);
+        startActivity(i);
+    }
+
 
     @Override
     protected void onResume() {
         super.onResume();
         buscarUsuarios();
+    }
+    public void deleteUsuario(String id){
+        new UsuarioService("DELETE",MainActivity.this).execute("/api/usuario/" + id);
     }
 
     public void setListaUsuarios(ArrayList<Usuario> lista){

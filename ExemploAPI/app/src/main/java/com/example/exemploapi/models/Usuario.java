@@ -62,14 +62,42 @@ public class Usuario {
                 JSONObject obj = array.getJSONObject(i);
                 usuario.setNome(obj.getString("nome"));
                 usuario.setEmail(obj.getString("email"));
-              //  usuario.setSenha(obj.getString("senha"));
-              //  usuario.setId(obj.getInt("id"));
+                usuario.setSenha(obj.getString("senha"));
+                usuario.setId(obj.getInt("id"));
                 usuarios.add(usuario);
             }
             return usuarios;
         }
         catch (Exception ex){
             return usuarios;
+        }
+    }
+    public static Usuario parseObject(String json){
+        Usuario usuario = new Usuario();
+        try {
+            JSONObject obj = new JSONObject(json);
+                usuario.setNome(obj.getString("nome"));
+                usuario.setEmail(obj.getString("email"));
+                usuario.setSenha(obj.getString("senha"));
+                usuario.setId(obj.getInt("id"));
+
+            return usuario;
+        }
+        catch (Exception ex){
+            return usuario;
+        }
+    }
+    public static String parseJson(Usuario usuario){
+        JSONObject jsonObject = new JSONObject();
+        try {
+            jsonObject.put("id",""+usuario.getId());
+            jsonObject.put("nome",usuario.getNome());
+            jsonObject.put("email",usuario.getEmail());
+            jsonObject.put("senha",usuario.getSenha());
+            return  jsonObject.toString();
+        }
+        catch (Exception ex){
+            return "";
         }
     }
 }
