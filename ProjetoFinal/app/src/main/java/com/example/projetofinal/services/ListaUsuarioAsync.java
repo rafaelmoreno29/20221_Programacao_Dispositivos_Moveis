@@ -14,26 +14,26 @@ public class ListaUsuarioAsync extends AsyncTask<String,String,String> {
 
     public ListaUsuarioAsync(String metodo, Context context){
         this.metodo = metodo;
+        this.progressDialog = new ProgressDialog(context);
         this.context = context;
-        progressDialog = new ProgressDialog(context);
     }
 
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
         progressDialog.setCancelable(false);
-        progressDialog.show(context,"Aguarde","Buscando dados...");
+        progressDialog.setMessage("Carregando...");
+        progressDialog.show();
     }
 
     @Override
     protected void onPostExecute(String s) {
         super.onPostExecute(s);
         if(metodo.equals("GET")){
-           ((MainActivity)context).setListaUsuario(Usuario.parseArrayList(s));
+           ((MainActivity)context).setListaUsuarios(Usuario.parseArrayList(s));
             ((MainActivity)context).setupRecyclerUsuario();
-            progressDialog.dismiss();
         }
-
+        progressDialog.dismiss();
     }
 
     @Override
