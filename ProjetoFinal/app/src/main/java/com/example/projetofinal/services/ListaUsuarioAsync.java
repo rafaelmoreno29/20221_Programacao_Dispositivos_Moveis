@@ -4,12 +4,15 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
 
-public class UsuarioService extends AsyncTask<String,String,String> {
+import com.example.projetofinal.MainActivity;
+import com.example.projetofinal.models.Usuario;
+
+public class ListaUsuarioAsync extends AsyncTask<String,String,String> {
     private String metodo;
     ProgressDialog progressDialog;
     Context context;
 
-    public UsuarioService(String metodo, Context context){
+    public ListaUsuarioAsync(String metodo, Context context){
         this.metodo = metodo;
         this.context = context;
         progressDialog = new ProgressDialog(context);
@@ -18,11 +21,19 @@ public class UsuarioService extends AsyncTask<String,String,String> {
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
+        progressDialog.setCancelable(false);
+        progressDialog.show(context,"Aguarde","Buscando dados...");
     }
 
     @Override
     protected void onPostExecute(String s) {
         super.onPostExecute(s);
+        if(metodo.equals("GET")){
+           ((MainActivity)context).setListaUsuario(Usuario.parseArrayList(s));
+            ((MainActivity)context).setupRecyclerUsuario();
+            progressDialog.dismiss();
+        }
+
     }
 
     @Override
@@ -32,6 +43,7 @@ public class UsuarioService extends AsyncTask<String,String,String> {
 
     @Override
     protected String doInBackground(String... strings) {
-        return null;
+        String data = ServiceApi.getService(strings[0],strings[1]);
+        return data;
     }
 }
