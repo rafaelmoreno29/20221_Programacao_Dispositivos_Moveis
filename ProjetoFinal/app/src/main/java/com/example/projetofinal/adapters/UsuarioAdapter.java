@@ -1,11 +1,15 @@
 package com.example.projetofinal.adapters;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.projetofinal.MainActivity;
 import com.example.projetofinal.R;
 import com.example.projetofinal.holders.UsuarioHolder;
 import com.example.projetofinal.models.Usuario;
@@ -31,6 +35,27 @@ public class UsuarioAdapter extends RecyclerView.Adapter<UsuarioHolder>
     public void onBindViewHolder(@NonNull UsuarioHolder holder, int position) {
         holder.txtNome.setText(usuarios.get(position).getNome());
         holder.txtEmail.setText(usuarios.get(position).getEmail());
+
+        //Excluir Item - LongClick
+        holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                AlertDialog.Builder alert = new AlertDialog.Builder(v.getContext());
+                alert.setMessage("Deseja Excluir esse item?");
+                alert.setTitle("Atenção");
+                alert.setNegativeButton("Não",null);
+                alert.setPositiveButton("Sim", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        ((MainActivity)holder.itemView.getContext())
+                                .excluirUsuario(usuarios.get(
+                                        holder.getAdapterPosition()).getId()+"");
+                    }
+                });
+                alert.show();
+                return true;
+            }
+        });
     }
 
     @Override

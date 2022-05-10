@@ -36,6 +36,10 @@ public class MainActivity extends AppCompatActivity {
     public void buscarUsuarios() {
         new ListaUsuarioAsync("GET",MainActivity.this).execute("api/usuario","");
     }
+    public void excluirUsuario(String id){
+        new ListaUsuarioAsync("DELETE",MainActivity.this)
+                                                   .execute("api/usuario/"+id,"");
+    }
 
     public void setListaUsuarios(ArrayList<Usuario> usuarios){
         this.listaUsuarios = usuarios;

@@ -30,7 +30,8 @@ public class Usuario {
                 JSONObject obj = array.getJSONObject(i);
                 usuario.setEmail(obj.getString("email"));
                 usuario.setNome(obj.getString("nome"));
-              //  usuario.setId(obj.getInt("id"));
+                usuario.setId(obj.getInt("id"));
+                usuario.setSenha(obj.getString("senha"));
                 usuarios.add(usuario);
             }
             return usuarios;

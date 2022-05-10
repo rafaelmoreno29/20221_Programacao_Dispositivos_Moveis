@@ -32,6 +32,18 @@ public class ServiceApi {
             return null;
         }
     }
+    public static String deleteService(String urlMethod){
+        try {
+            URL url = new URL(urlAPI + urlMethod);
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.setRequestMethod("DELETE");
+            InputStream in = new BufferedInputStream(conn.getInputStream());
+            return "OK";
+        }
+        catch (Exception ex) {
+            return null;
+        }
+    }
 
     private static String convertStreamToString(InputStream in) {
         BufferedReader reader = new BufferedReader(new InputStreamReader(in));
