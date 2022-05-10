@@ -2,6 +2,7 @@ package com.example.projetofinal.adapters;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +10,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.projetofinal.CadUsuarioActivity;
 import com.example.projetofinal.MainActivity;
 import com.example.projetofinal.R;
 import com.example.projetofinal.holders.UsuarioHolder;
@@ -35,6 +37,15 @@ public class UsuarioAdapter extends RecyclerView.Adapter<UsuarioHolder>
     public void onBindViewHolder(@NonNull UsuarioHolder holder, int position) {
         holder.txtNome.setText(usuarios.get(position).getNome());
         holder.txtEmail.setText(usuarios.get(position).getEmail());
+        //Editar Item - Click
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(holder.itemView.getContext(), CadUsuarioActivity.class);
+                i.putExtra("id",usuarios.get(holder.getAdapterPosition()).getId());
+                holder.itemView.getContext().startActivity(i);
+            }
+        });
 
         //Excluir Item - LongClick
         holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {

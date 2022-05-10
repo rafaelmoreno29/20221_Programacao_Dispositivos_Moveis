@@ -7,8 +7,11 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+
+import javax.net.ssl.HttpsURLConnection;
 
 public class ServiceApi {
     private static String urlAPI = "http://172.17.108.3:8080/";
@@ -43,6 +46,27 @@ public class ServiceApi {
         catch (Exception ex) {
             return null;
         }
+    }
+    public static String putService(String urlMethod, String data){
+        try {
+            URL url = new URL(urlAPI +urlMethod);
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.setDoOutput(true);
+            conn.setDoInput(true);
+            conn.setRequestProperty("Content-Type", "application/json");
+            conn.setRequestProperty("Accept", "application/json");
+            conn.setRequestMethod("PUT");
+            OutputStream out = conn.getOutputStream();
+            byte[] input = data.getBytes("utf-8");
+            out.write(input, 0, input.length);
+            int responseCode= conn.getResponseCode();
+            if(responseCode == HttpsURLConnection.HTTP_OK)
+                return "OK";
+            return "Erro";
+        } catch (Exception e) {
+            return null;
+        }
+
     }
 
     private static String convertStreamToString(InputStream in) {
