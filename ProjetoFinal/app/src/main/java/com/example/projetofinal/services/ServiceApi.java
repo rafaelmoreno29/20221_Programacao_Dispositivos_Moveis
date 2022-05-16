@@ -14,7 +14,7 @@ import java.net.URL;
 import javax.net.ssl.HttpsURLConnection;
 
 public class ServiceApi {
-    private static String urlAPI = "http://172.17.108.3:8080/";
+    private static String urlAPI = "http://172.17.57.198:8080/";
 
     public static String getService(String urlMetodo, String parametro){
         String response = "";

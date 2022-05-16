@@ -20,6 +20,34 @@ public class Usuario {
         this.email = email;
         this.senha = senha;
     }
+    public static Usuario parseObject(String json){
+        Usuario usuario = new Usuario();
+        try{
+           JSONObject obj = new JSONObject(json);
+          // usuario.setId(obj.getInt("id"));
+           usuario.setNome(obj.getString("nome"));
+           usuario.setSenha(obj.getString("senha"));
+           usuario.setEmail(obj.getString("email"));
+
+           return usuario;
+        }
+        catch (Exception ex){
+            return usuario;
+        }
+    }
+    public static String parseJson(Usuario usuario){
+        JSONObject obj = new JSONObject();
+        try{
+            obj.put("id",""+usuario.getId());
+            obj.put("nome",usuario.getNome());
+            obj.put("email",usuario.getEmail());
+            obj.put("senha",usuario.getSenha());
+            return obj.toString();
+        }
+        catch (Exception ex){
+            return "";
+        }
+    }
 
     public static ArrayList<Usuario> parseArrayList(String json){
         ArrayList<Usuario> usuarios = new ArrayList<>();

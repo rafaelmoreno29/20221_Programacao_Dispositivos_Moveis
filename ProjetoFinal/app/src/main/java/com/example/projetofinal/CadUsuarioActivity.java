@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.widget.TextView;
 
 import com.example.projetofinal.models.Usuario;
+import com.example.projetofinal.services.CadUsuarioAsync;
 import com.example.projetofinal.services.ListaUsuarioAsync;
 
 public class CadUsuarioActivity extends AppCompatActivity {
