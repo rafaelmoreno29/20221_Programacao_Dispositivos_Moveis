@@ -6,10 +6,13 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
 import com.example.projetofinal.adapters.UsuarioAdapter;
 import com.example.projetofinal.models.Usuario;
+import com.example.projetofinal.services.CadUsuarioAsync;
 import com.example.projetofinal.services.ListaUsuarioAsync;
 
 import java.util.ArrayList;
@@ -39,6 +42,11 @@ public class MainActivity extends AppCompatActivity {
     public void excluirUsuario(String id){
         new ListaUsuarioAsync("DELETE",MainActivity.this)
                                                    .execute("api/usuario/"+id,"");
+    }
+
+    public void addUsuarioClick(View v){
+        Intent i = new Intent(MainActivity.this, CadUsuarioActivity.class);
+        startActivity(i);
     }
 
     public void setListaUsuarios(ArrayList<Usuario> usuarios){

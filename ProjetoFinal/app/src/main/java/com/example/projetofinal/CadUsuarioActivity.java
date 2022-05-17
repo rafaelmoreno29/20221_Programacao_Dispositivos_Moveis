@@ -3,6 +3,7 @@ package com.example.projetofinal;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 
 import com.example.projetofinal.models.Usuario;
@@ -32,10 +33,28 @@ public class CadUsuarioActivity extends AppCompatActivity {
             id = getIntent().getIntExtra("id",0);
             new CadUsuarioAsync("GET",CadUsuarioActivity.this).execute("api/usuario/" +id,"");
         }
+        else
+            usuario = new Usuario();
     }
     public void carregarCampos(){
         txtNome.setText(usuario.getNome());
         txtSenha.setText(usuario.getSenha());
         txtEmail.setText(usuario.getEmail());
+    }
+
+    public void btnSalvarClick(View v){
+        usuario.setId(id);
+        usuario.setNome(txtNome.getText().toString());
+        usuario.setEmail(txtEmail.getText().toString());
+        usuario.setSenha(txtSenha.getText().toString());
+
+        if(id > 0){
+            new CadUsuarioAsync("PUT",CadUsuarioActivity.this)
+                    .execute("api/usuario/" + id,Usuario.parseJson(usuario));
+        }
+        else{
+           new CadUsuarioAsync("POST",CadUsuarioActivity.this)
+                    .execute("api/usuario",Usuario.parseJson(usuario));
+        }
     }
 }

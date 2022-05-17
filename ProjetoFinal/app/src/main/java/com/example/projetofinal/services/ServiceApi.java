@@ -47,6 +47,27 @@ public class ServiceApi {
             return null;
         }
     }
+    public static String postService(String urlMethod, String data){
+        try {
+            URL url = new URL(urlAPI +urlMethod);
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.setDoOutput(true);
+            conn.setDoInput(true);
+            conn.setRequestProperty("Content-Type", "application/json");
+            conn.setRequestProperty("Accept", "application/json");
+            conn.setRequestMethod("POST");
+            OutputStream out = conn.getOutputStream();
+            byte[] input = data.getBytes("utf-8");
+            out.write(input, 0, input.length);
+            int responseCode= conn.getResponseCode();
+            if(responseCode == HttpsURLConnection.HTTP_OK
+                    || responseCode == HttpsURLConnection.HTTP_CREATED)
+                return "OK";
+            return "Erro";
+        } catch (Exception e) {
+            return null;
+        }
+    }
     public static String putService(String urlMethod, String data){
         try {
             URL url = new URL(urlAPI +urlMethod);
@@ -60,13 +81,13 @@ public class ServiceApi {
             byte[] input = data.getBytes("utf-8");
             out.write(input, 0, input.length);
             int responseCode= conn.getResponseCode();
-            if(responseCode == HttpsURLConnection.HTTP_OK)
+            if(responseCode == HttpsURLConnection.HTTP_OK
+                    || responseCode == HttpsURLConnection.HTTP_NO_CONTENT)
                 return "OK";
             return "Erro";
         } catch (Exception e) {
             return null;
         }
-
     }
 
     private static String convertStreamToString(InputStream in) {
